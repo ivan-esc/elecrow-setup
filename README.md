@@ -12,7 +12,7 @@ This is a guide and tutorial for setting up an ELECROW ESP32 7.0 Inch HMI Displa
 -----------------------------------
 This is the text that describes the tutorial overview. And this is an image test.
 <br>
-[Physical Interface Diagram](tutorial-image-assets/interface-diagram)
+![Physical Interface Diagram](tutorial-image-assets/interface-diagram)
   
 -----------------------------------
 **2. SquareLine Studio**
