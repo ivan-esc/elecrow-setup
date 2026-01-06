@@ -1,0 +1,19 @@
+SET(SOURCES ui_comp_button1.c
+    ui_comp.c
+    ui_Screen1.c
+    ui.c
+    ui_comp_hook.c
+    ui_helpers.c
+    ui_events.c
+    ui_img_1353450204.c
+    ui_img_670504427.c
+    ui_img_2092287828.c
+    ui_img_53718616.c
+    fonts/ui_font_Open_Sans_SemiBold_26.c
+    fonts/ui_font_Open_Sans_SemiBold_24.c
+    fonts/ui_font_Open_Sans_ExtraBold_46.c
+    fonts/ui_font_Open_Sans_ExtraBold_26.c
+    fonts/ui_font_Open_Sans_ExtraBold_32.c
+    fonts/ui_font_Open_Sans_ExtraBold_72.c)
+
+add_library(ui ${SOURCES})
