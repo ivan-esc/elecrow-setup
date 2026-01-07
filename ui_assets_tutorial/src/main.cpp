@@ -18,7 +18,7 @@ HardwareSerial DisplaySerial(DISPLAY_UART);
 #define CMD_AWARENESS  0x02
 #define CMD_GRAPH      0x03
 #define CMD_HEARTBEAT  0x04
-#define CMD_MESSAGE 0x05
+#define CMD_MESSAGE    0x05
 
 // ================= MESSAGE =================
 typedef enum {
@@ -49,7 +49,6 @@ enum RxState {
     WAIT_LEN,
     WAIT_PAYLOAD
 };
-
 RxState rxState = WAIT_SYNC;
 
 uint8_t rxCmd = 0;

@@ -190,7 +190,7 @@ void loop() {
 
   // ================= CMD 0x04 (HEARTBEAT – 200ms) =================
   if (now - t_heartbeat >= 200) {
-    t_heartbeat += 500;
+    t_heartbeat += 200;
     DisplaySerial.write(SYNC_BYTE);
     DisplaySerial.write(CMD_HEARTBEAT);
     DisplaySerial.write(1);

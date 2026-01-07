@@ -1,5 +1,3 @@
-#include "init_helper_ELYOS.h"
-
 /*******************************************************************************
  * Touch libraries:
  * FT6X36: https://github.com/strange-v/FT6X36.git
