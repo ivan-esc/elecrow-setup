@@ -205,12 +205,6 @@ void loop() {
     DisplaySerial.write(CMD_MESSAGE);
     DisplaySerial.write(custom_msg_len);
     DisplaySerial.write((uint8_t *)custom_msg_buf, custom_msg_len);
-    //Brute force it twice
-    DisplaySerial.write(SYNC_BYTE);
-    DisplaySerial.write(CMD_MESSAGE);
-    DisplaySerial.write(custom_msg_len);
-    DisplaySerial.write((uint8_t *)custom_msg_buf, custom_msg_len);
-
   }
 }
 

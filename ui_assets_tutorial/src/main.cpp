@@ -30,16 +30,15 @@ Message sent_message = IDLE_MSG;
 
 // ================= DATA STRUCT =================
 typedef struct {
-    float battery_voltage;
-    float current_amps;
-    uint8_t laps;
-    float consumption;
-    float efficiency;
-    uint16_t rpms;
-    float velocity;
-    uint8_t tx_message;
+    float battery_voltage;  // 22.0 to 26.0 Volts
+    float current_amps;     // 7.0 to 10.0 Amps
+    uint8_t laps;           // Lap counter
+    float consumption;      //120.0 to 150.0 kWh
+    float efficiency;       //160.0 to 200.0 km/kWh
+    uint16_t rpms;          //Allows for 0 to 999 with no issue
+    float velocity;         //0 to 99.9
+    uint8_t tx_message;     //Type of message recieved (0-2)
 } DisplayData;
-
 DisplayData received_data = {0};
 
 // ================= RX STATE MACHINE =================
@@ -274,32 +273,12 @@ static void update_100ms(void)
     // ---------- Efficiency (2 decimals) ----------
     snprintf(buf, sizeof(buf), "%.2f", received_data.efficiency);
     lv_label_set_text(ui_EfficiencyLabel, buf);
-}
-
-static void update_2s(void)
-{
-    //Cambiar ejes para mejorar resolucion a 1 decimal en vez de int
-    int32_t amps_val = (int32_t)(received_data.current_amps * 10.0f + 0.5f);
-    int32_t volt_val = (int32_t)(received_data.battery_voltage * 10.0f + 0.5f);
-
-    // Mover previas
-    memmove(&ui_Chart1_series_1_array[0],
-            &ui_Chart1_series_1_array[1],
-            (60 - 1) * sizeof(lv_coord_t));
-    memmove(&ui_Chart1_series_2_array[0],
-            &ui_Chart1_series_2_array[1],
-            (60 - 1) * sizeof(lv_coord_t));
-    // Mas reciente a la derecha
-    ui_Chart1_series_1_array[60 - 1] = amps_val;
-    ui_Chart1_series_2_array[60 - 1] = volt_val;
-
-    lv_chart_refresh(ui_Chart1);
 
     static lv_obj_t *bat_clip = NULL;
     static lv_coord_t full_h;
     static lv_coord_t base_y;
 
-    /* ---------- One-time lazy setup ---------- */
+    /* ---------- One-time setup ---------- */
     if (!bat_clip) {
         bat_clip = lv_obj_create(lv_obj_get_parent(ui_batFull));
         lv_obj_remove_style_all(bat_clip);
@@ -318,7 +297,7 @@ static void update_2s(void)
     }
 
     /* ---------- Battery fill logic ---------- */
-    float v = received_data.velocity;
+    //float v = received_data.velocity;
     if (v < 0)   v = 0;
     if (v > 100) v = 100;
 
@@ -326,7 +305,29 @@ static void update_2s(void)
     if (vis_h < 1) vis_h = 1;
 
     lv_obj_set_height(bat_clip, vis_h);
-    lv_obj_set_y(bat_clip, 339 + base_y + (full_h - vis_h));    
+    lv_obj_set_y(bat_clip, 339 + base_y + (full_h - vis_h));   
+}
+
+static void update_2s(void)
+{
+    //Convertir a enteros *10, mantiene resolucion de 1 decimal
+    int32_t amps_val = (int32_t)(received_data.current_amps * 10.0f + 0.5f);
+    int32_t volt_val = (int32_t)(received_data.battery_voltage * 10.0f + 0.5f);
+
+    // Mover previas
+    memmove(&ui_Chart1_series_1_array[0],
+            &ui_Chart1_series_1_array[1],
+            (60 - 1) * sizeof(lv_coord_t));
+    memmove(&ui_Chart1_series_2_array[0],
+            &ui_Chart1_series_2_array[1],
+            (60 - 1) * sizeof(lv_coord_t));
+    // Mas reciente a la derecha
+    ui_Chart1_series_1_array[60 - 1] = amps_val;
+    ui_Chart1_series_2_array[60 - 1] = volt_val;
+
+    lv_chart_refresh(ui_Chart1);
+
+     
 }
 
 void update_message_label(void)
@@ -358,7 +359,6 @@ void update_message_label(void)
             break;
     }
 }
-
     
 // ================= SETUP =================
 void setup()
