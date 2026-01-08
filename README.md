@@ -49,14 +49,14 @@ In this example tutorial, the objective is to leave a clear explanation on the i
 
 In order to cover this, the tutorial is divided in the following sections. **Consider this a readme index; click into any step to go straight to it.**
 
-1. [Important Display Considerations](#1.-Important-Display-Considerations)
-2. [Invisioning and designing UI](#2.-Invisioning-and-designing-UI)
-3. [SquareLine Studio Project](#3.-SquareLine-Studio-Project)
-4. [Common files and General PlatformIO setup](#4.-Common-files-and-General-PlatformIO-setup)
-5. [Tutorial Specific Setup and Code](#5.-Tutorial-Specific-Setup-and-Code)
-6. [Display Code](#6.-Display-Code)
-7. [Telemetry simulation code and circuit](7.-Telemetry-simulation-code-and-circuit)
-8. [Helper Init code explanation](#8.-Helper-Init-code-explanation)
+1. [Important Display Considerations](#1-important-display-considerations)
+2. [Invisioning and designing UI](#2-invisioning-and-designing-ui)
+3. [SquareLine Studio Project](#3-squareLine-studio-project)
+4. [Common files and General PlatformIO setup](#4-common-files-and-general-platformio-setup)
+5. [Tutorial Specific Setup and Code](#5-tutorial-specific-setup-and-code)
+6. [Display Code](#6-display-code)
+7. [Telemetry simulation code and circuit](7-telemetry-simulation-code-and-circuit)
+8. [Helper Init code explanation](#8-helper-init-code-explanation)
 9. CAN Implementation 
 
 -----------------------------------
@@ -824,6 +824,9 @@ As the entire UART message encoding and data structure transmission has already 
     - **Every 1s (CMD 0x03):** Battery and current data for charts.
     - **Every 200ms (CMD 0x04):** Message sent awareness check 
     - **When available (CMD 0x05):** Send the custom message characters
+
+Here's an very simplified circuit drawing that shows the test board used for this tutorial project. The important aspects are that everything must be under a common GND; 3V3 from the Display remains connected to nothing; and for UART communication, TX pin should go into the RX pin of the other device and viceversa.
+![Telemetry2](ignore-images/telemetry2.png)
 
 -----------------------------------
 ## 8. Helper Init code explanation
