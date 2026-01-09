@@ -15,14 +15,14 @@ This is a guide and tutorial for setting up an ELECROW ESP32 7.0 Inch HMI Displa
 -----------------------------------
 **Tutorial Overview**
 -----------------------------------
-In this tutorial, we will be setting up an User Interface in the ELECROW screen, by creating a simulation of telemetry transmission for a driver screen of Shell ECO Marathon Battery-Electric Vehicles. (by communicating it with an ESP32 Dev Module). It is important to establish that this UI is **NOT ideal** to be used as an actual UI, since it introduces way too much visual clutter for the driver to manage. The tutorial's high usage of features is mostly for show and to highlight the performance, capabilities and configurations of the screen; **not for actual implementation inside of the competition.**
+In this tutorial, we will be setting up an User Interface in the ELECROW screen, by creating a simulation of telemetry status board for Shell ECO Marathon Battery-Electric Vehicles. (by communicating it with an ESP32 Dev Module). It is important to establish that this UI is **NOT ideal** to be used as an actual UI for the actual driver, since it introduces way too much visual clutter for the them to manage. The tutorial's high usage of features is mostly for show and to highlight the performance, capabilities and configurations of the screen; **not for actual implementation inside of the competition.**
 
 ![Video_UI](ignore-images/elecrow_video.gif)
 
 ![Final_UI](ignore-images/squarelinefinal.png)
 
 The ELECROW ESP32 7.0 Inch HMI Display, as the name suggests, uses an ESP32 microcontroller for handling its entire programming; meaning it can use ESPIDF or Arduino's framework through either ArduinoIDE or PlatformIO. For this tutorial, we'll be using the following softwares:
-- **SquareLine Studio** (v1.4.0): It is important that you do not install nor update to newer versions. [(Guide)](https://www.elecrow.com/wiki/Get_Started_with_SquareLine_Studio.html)
+- **SquareLine Studio** (v1.4.0): It is important that you do not install nor update to newer versions (there are exporting issues). [(Guide)](https://www.elecrow.com/wiki/Get_Started_with_SquareLine_Studio.html)
 - **Visual Studio Code** with PlatformIO extension installed [(Guide)](https://programarfacil.com/blog/arduino-blog/platformio/)  
 
 This example is inspired by [Elecrow's official display example tutorial](https://www.elecrow.com/wiki/CrowPanel_ESP32_7.0-inch_with_PlatformIO.html), but it expands on it by incrementing the use of UI elements. 
@@ -78,8 +78,6 @@ With this in mind, we can begin the tutorial.
 
 The first towards designing any UI is establishing what is the interface actually going to show. It is important to have in mind how the information or interactive elements are going to be presented to the user. As I like to say, **intuitiveness is the most important part of any project** you intend on having some sort of user interaction where the user isnt oneself; if you have to rigurosly explain how to operate the UI, then it's not a good UI.
 Not overly bombarding the user with tens of options, buttons, labels and numbers is a good idea; and looking for inspiration on other UIs (mobile apps, webpages, car screens) is always a favorable starting point.
-
-Once again, the final product of this tutorial isnt reliable, ideal or friendly to an external user; but it is good enough to display the idea of design choices and the creative process behind them.
 
 As this is a telemetry simulation; first we need to establish what information and interactive/visual elements will be presented; for the tutorial, I set for the following:
 - Speedometer with velocity and RPMs indicator.
