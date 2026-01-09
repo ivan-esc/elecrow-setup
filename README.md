@@ -515,7 +515,7 @@ Where CMD tells the code what type of data and LEN tells it how long is the byte
 0x01 CMD_FAST      : fastest (every ~10ms)  payload: rpms (2 bytes MSB-first), velocity (4-byte float)  => LEN=6
 0x02 CMD_AWARENESS : medium (100ms)         payload: laps (1 byte), consumption (float), efficiency (float) => LEN=9
 0x03 CMD_GRAPH     : slow (1s)              payload: battery_voltage (float), current_amps (float) => LEN=8
-0x04 CMD_HEARTBEAT : heartbeat (500ms)      payload: tx_message (1 byte) => LEN=1
+0x04 CMD_HEARTBEAT : heartbeat (200ms)      payload: tx_message (1 byte) => LEN=1
 0x05 CMD_MESSAGE   : custom message         payload: N bytes text (N<=MAX_CUSTOM_MSG_LEN)
 ```
 Using an enumeration data type, the UART byte processing makes the logic avoid possible misinterpretation or message corruption.
